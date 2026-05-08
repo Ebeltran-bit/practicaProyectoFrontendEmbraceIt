@@ -1,0 +1,19 @@
+<h3> {{ listName() }}</h3>
+        <ul>
+        <!-- We do a FOR loop where we safe the info from the characters signal into the character variable -->
+            @for (character of characters(); track character.id; let i = $index) {
+                <!--Condition to filter characters by power level-->
+                @if (character.powerLevel>500) {
+                    <li>
+                        <!--It prints the character id + name + power level-->
+                        {{i+1}} - {{ character.name }} - Power Level: 
+                        <!--Condition to change the color of the power level based on its value using ngStyle-->
+                        <strong [ngStyle]="{'color': character.powerLevel > 9000 ? 'red' : 'blue',}">
+                        ({{ character.powerLevel }})
+                        </strong>
+                    </li>
+                }@else{
+                    <li>Character without power</li>
+                }
+            }            
+        </ul>

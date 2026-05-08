@@ -1,0 +1,49 @@
+<h1>Dragon Ball Page</h1><hr>
+
+<section class="row">
+    <div>
+
+        <h3>Agregar {{ name() }}</h3>
+
+        <!--Create a text input for the character's name-->
+        <input type="text" 
+        class="formControl" 
+        placeholder="Name"
+        [value]="name()" 
+        (change)="name.set(txtName.value)" 
+        #txtName>
+
+        <!--Create a number input for the character's power level  -->
+        <input type="number" 
+        class="formControl"
+        placeholder="Power Level" 
+        [value]="powerLevel()"
+        (change)="powerLevel.set(+txtPower.value)" 
+        #txtPower>
+
+        <!--Create a button to add the character-->
+        <button (click)="addCharacter()" class="btn">Add</button>
+    </div>
+
+    <div class="row">
+        <h3>Personajes</h3>
+        <ul>
+        <!-- We do a FOR loop where we safe the info from the characters signal into the character variable -->
+            @for (character of characters(); track character.id; let i = $index) {
+                <!--Condition to filter characters by power level-->
+                @if (character.powerLevel>500) {
+                    <li>
+                        <!--It prints the character id + name + power level-->
+                        {{i+1}} - {{ character.name }} - Power Level: 
+                        <!--Condition to change the color of the power level based on its value using ngStyle-->
+                        <strong [ngStyle]="{'color': character.powerLevel > 9000 ? 'red' : 'blue',}">
+                        ({{ character.powerLevel }})
+                        </strong>
+                    </li>
+                }@else{
+                    <li>Character without power</li>
+                }
+            }            
+        </ul>
+    </div>
+</section>

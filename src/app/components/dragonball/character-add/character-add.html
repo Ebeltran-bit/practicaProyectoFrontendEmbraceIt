@@ -1,0 +1,20 @@
+    <h3>Agregar {{ name() }}</h3>
+
+    <!--Create a text input for the character's name-->
+    <input type="text" 
+    class="formControl" 
+    placeholder="Nombre"
+    [value]="name()" 
+    (change)="name.set(txtName.value)" 
+    #txtName>
+
+    <!--Create a number input for the character's power level  -->
+    <input type="number" 
+    class="formControl"
+    placeholder="Poder" 
+    [value]="powerLevel()"
+    (change)="powerLevel.set(+txtPower.value)" 
+    #txtPower>
+
+    <!--Create a button to add the character-->
+    <button (click)="addCharacter()" class="btn">Agregar</button>
